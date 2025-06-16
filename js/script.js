@@ -44,6 +44,10 @@ document
       drawerIcon.classList.remove("is-checked");
       drawerContent.classList.remove("is-checked");
       drawerBody.classList.remove("is-checked");
+      hamburgerInertBoxes.forEach(function (hamburgerInertBox) {
+        hamburgerInertBox.classList.remove("is-inert");
+        hamburgerInertBox.inert = false; //操作を受け付ける様にする
+    });
     });
   });
 
