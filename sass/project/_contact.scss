@@ -356,6 +356,14 @@
   clip: rect(0, 0, 0, 0);
   overflow: hidden;
 
+  &:focus{
+    + .form-checkbox__text {
+      &::before {
+        border: 1px solid g.$color-main-Blue;
+      }
+    }
+  }
+
   &:checked {
     + .form-checkbox__text {
       &::after {

@@ -168,10 +168,8 @@ body {
 }
 
 .link-filter :hover {
-  -webkit-filter: brightness(0) saturate(100%) invert(71%) sepia(58%)
-    saturate(316%) hue-rotate(150deg) brightness(83%) contrast(84%);
-  filter: brightness(0) saturate(100%) invert(71%) sepia(58%) saturate(316%)
-    hue-rotate(150deg) brightness(83%) contrast(84%);
+  -webkit-filter: brightness(0) saturate(100%) invert(71%) sepia(58%) saturate(316%) hue-rotate(150deg) brightness(83%) contrast(84%);
+  filter: brightness(0) saturate(100%) invert(71%) sepia(58%) saturate(316%) hue-rotate(150deg) brightness(83%) contrast(84%);
 }
 
 @media screen and (max-width: 374px) {
@@ -1061,12 +1059,7 @@ body {
   font-weight: 700;
   font-size: 12.8px;
   color: #ffffff;
-  background: linear-gradient(
-    265.18deg,
-    #ac3790 -3.52%,
-    #d65a5c 44.94%,
-    #f4c06d 92.38%
-  );
+  background: linear-gradient(265.18deg, #ac3790 -3.52%, #d65a5c 44.94%, #f4c06d 92.38%);
   border-radius: 12.8px 12.8px 0 0;
   padding-block: 6.4px;
 }
@@ -1266,8 +1259,7 @@ body {
   content: "";
   width: 100px;
   height: 36px;
-  background: url(../img/about-arrow.png) no-repeat no-repeat center
-    center/contain;
+  background: url(../img/about-arrow.png) no-repeat no-repeat center center/contain;
   position: absolute;
   z-index: -1;
   left: 50%;
@@ -1681,21 +1673,17 @@ body {
     align-self: end;
   }
 }
-.entry__step-2::before,
-.entry__step-2::after {
+.entry__step-2::before, .entry__step-2::after {
   position: absolute;
   content: "";
-  background: url(../img/sp/device=SP.png) no-repeat no-repeat center
-    center/contain;
+  background: url(../img/sp/device=SP.png) no-repeat no-repeat center center/contain;
   width: 7px;
   height: 34px;
 }
 @media screen and (min-width: 1024px) {
-  .entry__step-2::before,
-  .entry__step-2::after {
+  .entry__step-2::before, .entry__step-2::after {
     top: 136px;
-    background: url(../img/wave-PC.png) no-repeat no-repeat center
-      center/contain;
+    background: url(../img/wave-PC.png) no-repeat no-repeat center center/contain;
     width: 113px;
     height: 24px;
   }
@@ -3193,8 +3181,7 @@ body {
     padding-left: 33px;
   }
 }
-.form-radio__text::before,
-.form-radio__text::after {
+.form-radio__text::before, .form-radio__text::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -3263,6 +3250,9 @@ body {
   clip: rect(0, 0, 0, 0);
   overflow: hidden;
 }
+.form-checkbox__input:focus + .form-checkbox__text::before {
+  border: 1px solid #9ed0e0;
+}
 .form-checkbox__input:checked + .form-checkbox__text::after {
   opacity: 1;
 }
@@ -3281,8 +3271,7 @@ body {
     font-size: 16px;
   }
 }
-.form-checkbox__text::before,
-.form-checkbox__text::after {
+.form-checkbox__text::before, .form-checkbox__text::after {
   content: "";
   position: absolute;
   left: 0;
@@ -3311,8 +3300,7 @@ body {
   position: relative;
   z-index: 10;
 }
-.drawer-icon.is-checked .drawer-icon__bar:nth-child(1),
-.drawer-icon.is-checked .drawer-icon__bar:nth-child(3) {
+.drawer-icon.is-checked .drawer-icon__bar:nth-child(1), .drawer-icon.is-checked .drawer-icon__bar:nth-child(3) {
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
@@ -3352,8 +3340,7 @@ body {
   background: #4a3636;
   right: -6.4px;
 }
-.drawer-icon__bar:nth-child(2),
-.drawer-icon__bar:nth-child(3) {
+.drawer-icon__bar:nth-child(2), .drawer-icon__bar:nth-child(3) {
   width: 32px;
   left: 0;
 }
@@ -3596,8 +3583,7 @@ body {
     transform: translateX(-50%) translateY(-50%);
     width: 16px;
     height: 27px;
-    background: url(../img/arrow-left.png) no-repeat no-repeat center
-      center/contain;
+    background: url(../img/arrow-left.png) no-repeat no-repeat center center/contain;
     z-index: 1;
     transition: -webkit-transform 0.3s;
     transition: transform 0.3s;
@@ -3627,8 +3613,7 @@ body {
     transform: translateX(-50%) translateY(-50%);
     width: 16px;
     height: 27px;
-    background: url(../img/arrow-right.png) no-repeat no-repeat center
-      center/contain;
+    background: url(../img/arrow-right.png) no-repeat no-repeat center center/contain;
     z-index: 1;
     transition: -webkit-transform 0.3s;
     transition: transform 0.3s;
@@ -3640,4 +3625,4 @@ body {
     -webkit-transform: translateX(0%) translateY(-50%);
     transform: translateX(0%) translateY(-50%);
   }
-}
+}/*# sourceMappingURL=style.css.map */
