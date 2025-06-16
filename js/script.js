@@ -18,12 +18,22 @@
 const drawerIcon = document.querySelector("#js-drawer-icon");
 const drawerContent = document.querySelector("#js-drawer-content");
 const drawerBody = document.querySelector(".body");
+const hamburgerInertBoxes = document.querySelectorAll(".js-hamburger-inert"); // キーボードからの操作を停止させる要素の検出
 if (drawerIcon) {
   drawerIcon.addEventListener("click", function (e) {
     e.preventDefault();
     drawerIcon.classList.toggle("is-checked");
     drawerContent.classList.toggle("is-checked");
     drawerBody.classList.toggle("is-checked");
+    hamburgerInertBoxes.forEach(function (hamburgerInertBox) {
+      if (hamburgerInertBox.classList.contains("is-inert")) {
+        hamburgerInertBox.classList.remove("is-inert");
+        hamburgerInertBox.inert = false; //操作を受け付ける様にする
+      } else {
+        hamburgerInertBox.classList.add("is-inert");
+        hamburgerInertBox.inert = true; //操作を受け付けない様にする
+      }
+    });
   });
 }
 
