@@ -61,12 +61,17 @@ function scroll_top() {
 // モーダルウィンドウ
 
 const modalBtns = document.querySelectorAll(".modal-open");
+const modalInertBoxes = document.querySelectorAll(".js-modal-inert");
 modalBtns.forEach(function (modalBtn) {
   modalBtn.onclick = function () {
     var modal = modalBtn.getAttribute("data-modal");
-    // document.getElementById(modal).style.display = "block";
     document.getElementById(modal).classList.add("is-opened");
     drawerBody.classList.add("is-checked");
+    modalInertBoxes.forEach(function (modalInertBox) {
+        modalInertBox.classList.add("is-inert");
+        modalInertBox.inert = true; //操作を受け付けない様にする
+      
+    });
   };
 });
 
@@ -77,6 +82,11 @@ closeBtns.forEach(function (closeBtn) {
     // modal.style.display = "none";
     modal.classList.remove("is-opened");
     drawerBody.classList.remove("is-checked");
+    modalInertBoxes.forEach(function (modalInertBox) {
+        modalInertBox.classList.remove("is-inert");
+        modalInertBox.inert = false; //操作を受け付ける様にする
+      
+    });
   };
 });
 
