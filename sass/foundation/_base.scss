@@ -1,0 +1,24 @@
+@use "../global" as g;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: g.$header-height;
+}
+
+body {
+  color: g.$color-monochrome-Blown;
+  font-family: g.$font-family-jp-1;
+  font-size: g.$font-size-base-sp;
+  font-weight: g.$font-weight-base;
+  line-height: g.$line-hight-base;
+}
+
+.inner {
+  padding-inline: 20px;
+
+  @include g.mq(md) {
+    padding-inline: 40px;
+    max-width: calc(g.$pc-inner + 40px * 2);
+    margin-inline: auto;
+  }
+}

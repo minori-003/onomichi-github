@@ -1,0 +1,464 @@
+@use "../global" as g;
+
+.prizes {
+  margin-top: 13.67px;
+  position: relative;
+  padding-bottom: 216px;
+  overflow: hidden;
+
+  @include g.mq(md) {
+    margin-top: 102px;
+    padding-bottom: 636px;
+  }
+}
+
+.prizes__inner {
+  padding-top: 20px;
+  padding-bottom: 30px;
+  position: relative;
+
+  @include g.mq(md) {
+    padding-top: 28px;
+    padding-bottom: 53px;
+  }
+
+  &::before {
+    position: absolute;
+    z-index: -1;
+    top: 1px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    content: "";
+    background: url(../img/sp/prizes-title-bg-SP.png) center center / contain;
+    width: 238px;
+    height: 83px;
+
+    @include g.mq(md) {
+      background: url(../img/prizes1-title-bg-pc.png) center center / contain;
+      width: 365.6px;
+      height: 148.9px;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    z-index: -1;
+    content: "";
+    width: 100%;
+    height: calc(100% - 84px);
+    border-radius: 24px;
+    background: g.$color-monochrome-White;
+
+    @include g.mq(md) {
+      height: calc(100% - 152.9px);
+      max-width: g.$pc-inner;
+      bottom: 3px;
+    }
+  }
+}
+
+.prizes__heading {
+  position: relative;
+
+  @include g.mq(lg) {
+    &::before {
+      position: absolute;
+      top: 0px;
+      left: 0;
+      content: "";
+      width: 315px;
+      height: 86px;
+      background: url(../img/prizes-pattern-left.png) center center / contain;
+    }
+
+    &::after {
+      position: absolute;
+      top: 0px;
+      right: 0;
+      content: "";
+      width: 315px;
+      height: 86px;
+      background: url(../img/prizes-pattern-right.png) center center / contain;
+    }
+  }
+}
+
+.prizes__content {
+  margin-top: 16px;
+
+  @include g.mq(md) {
+    margin-top: 41px;
+  }
+}
+
+.prizes__text {
+  text-align: center;
+
+  @include g.mq(md) {
+    font-size: g.$font-size-lg;
+  }
+}
+
+.prizes__cards-box {
+  margin-top: 23px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  @include g.mq(md) {
+    max-width: 912px;
+    margin-inline: auto;
+    margin-top: 32px;
+    gap: 40px;
+  }
+}
+
+.prizes__cards {
+  display: flex;
+  gap: 15px;
+}
+
+.prizes__cards-top {
+  justify-content: space-between;
+
+  @include g.mq(md) {
+    gap: 32px;
+  }
+}
+
+.prizes__cards-bottom {
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include g.mq(md) {
+    flex-wrap: nowrap;
+    gap: 36px;
+  }
+}
+
+.prizes-card {
+  position: relative;
+  margin-top: 24px;
+  border-radius: 8px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 8px;
+    transition: all 0.1s linear;
+  }
+
+  img {
+    display: block;
+    transition: scale 0.1s linear;
+  }
+  &:hover {
+    &::after {
+      outline: 4px solid g.$color-main-Blue;
+      outline-offset: -4px;
+    }
+
+    .prizes-card::after {
+      display: block;
+    }
+
+    .prizes-card__image {
+      img {
+        scale: 1.2;
+      }
+    }
+    .prizes-card__text {
+      &::before {
+        border-color: transparent g.$color-main-Blue g.$color-main-Blue
+          transparent;
+      }
+    }
+  }
+  &:focus {
+    &::after {
+      outline: 4px solid g.$color-main-Blue;
+      outline-offset: -4px;
+    }
+
+    .prizes-card::after {
+      display: block;
+    }
+
+    .prizes-card__image {
+      img {
+        scale: 1.2;
+      }
+    }
+    .prizes-card__text {
+      &::before {
+        border-color: transparent g.$color-main-Blue g.$color-main-Blue
+          transparent;
+      }
+    }
+  }
+}
+
+.prizes-card__top {
+  flex-basis: calc((100% - 15px) / 2);
+
+  @include g.mq(md) {
+    margin-top: 50px;
+    border-radius: 24px;
+    flex-basis: calc((100% - 32px) / 2);
+
+    &::after {
+      border-radius: 24px;
+    }
+
+    .prizes-card__head {
+      width: 96px;
+      height: 96px;
+    }
+
+    .prizes-card__head-inner {
+      width: 36.67px;
+      height: 76.33px;
+      gap: 2.5px;
+    }
+
+    .prizes-card__head__text {
+      font-size: g.$font-size-lg;
+    }
+
+    .prizes-card__head__num {
+      font-size: 48px;
+    }
+
+    .prizes-card__image {
+      border-radius: 24px 24px 0 0;
+      img {
+        border-radius: 24px 24px 0 0;
+        aspect-ratio: 44 / 34;
+      }
+    }
+
+    .prizes-card__text {
+      font-size: 20px;
+      min-height: 120px;
+      border-radius: 0 0 24px 24px;
+
+      &::before {
+        border-width: 50px;
+        border-radius: 0 0 24px 0;
+      }
+
+      &::after {
+        bottom: 14px;
+        right: 12.5px;
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
+}
+
+.prizes-card__bottom {
+  flex-basis: calc((100% - 15px) / 2);
+
+  &:nth-of-type(2) {
+    .prizes-card__image {
+      img {
+        -o-object-position: 50% 52%;
+        object-position: 50% 52%;
+      }
+    }
+  }
+
+  @include g.mq(md) {
+    margin-top: 40px;
+    flex-basis: calc((100% - (36px * 2)) / 3);
+    border-radius: 16px;
+
+    &::after {
+      border-radius: 16px;
+    }
+
+    .prizes-card__head-inner {
+      width: 29.33px;
+      height: 60.67px;
+      gap: 0.5px;
+    }
+
+    .prizes-card__head {
+      width: 76px;
+      height: 76px;
+    }
+
+    .prizes-card__head__text {
+      font-size: 12.8px;
+    }
+
+    .prizes-card__head__num {
+      margin-top: 2px;
+      font-size: 38.4px;
+    }
+
+    .prizes-card__image {
+      border-radius: 16px 16px 0 0;
+      img {
+        border-radius: 16px 16px 0 0;
+        aspect-ratio: 28 / 24;
+      }
+    }
+
+    .prizes-card__text {
+      font-size: g.$font-size-lg;
+      min-height: 80px;
+      border-radius: 0 0 16px 16px;
+
+      &::before {
+        border-width: 32px;
+        border-radius: 0 0 16px 0;
+      }
+
+      &::after {
+        bottom: 8.9px;
+        right: 8px;
+        width: 20.4px;
+        height: 20.4px;
+      }
+    }
+  }
+}
+
+.prizes-card__head {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  width: 46px;
+  height: 46px;
+  background: url(../img/Star.png) center center / cover;
+  display: flex;
+  // flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: g.$color-monochrome-White;
+  z-index: 1;
+}
+
+.prizes-card__head-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+  width: 17.6px;
+  height: 36.6px;
+  @include g.mq(md) {
+    width: 36.67px;
+    height: 76.33px;
+
+    gap: 2.5px;
+  }
+}
+
+.prizes-card__head__text {
+  font-size: 7.68px;
+  font-weight: g.$font-weight-bold;
+  // line-height: 1;
+}
+
+.prizes-card__head__num {
+  font-family: g.$font-family-en-2;
+  font-size: 23.04px;
+  font-weight: g.$font-weight-bold;
+  line-height: 1;
+}
+
+.prizes-card__image {
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  display: block;
+  img {
+    border-radius: 8px 8px 0 0;
+    aspect-ratio: 16 / 14;
+    -o-object-fit: cover;
+    object-fit: cover;
+  }
+}
+
+.prizes-card__text {
+  border-radius: 0 0 8px 8px;
+  background: g.$color-monochrome-Gray;
+  color: g.$color-monochrome-Blown;
+  text-align: center;
+  font-weight: g.$font-weight-bold;
+  min-height: 56px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: "";
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-color: transparent g.$color-sub-DBlue g.$color-sub-DBlue transparent;
+    border-width: 18px;
+    border-radius: 0 0 7px 0;
+  }
+
+  &::after {
+    position: absolute;
+    bottom: 6px;
+    right: 5px;
+    content: "";
+    background: url(../img/prizes_zoom_icon.png) center center / cover;
+    width: 11.5px;
+    height: 11.5px;
+  }
+}
+
+.prizes__content__button {
+  text-align: center;
+  margin-top: 18px;
+
+  @include g.mq(md) {
+    margin-top: 40.5px;
+  }
+}
+
+.prizes-bg__bottom {
+  z-index: -2;
+  position: absolute;
+  bottom: 0;
+  // left: 50%;
+  // -webkit-transform: translateX(-50%);
+  // transform: translateX(-50%);
+  width: 100%;
+  // min-height: 260px;
+
+  @include g.mq(md) {
+    height: 640px;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 260px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    -o-object-position: center center;
+    object-position: center center;
+  }
+}

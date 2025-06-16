@@ -1,0 +1,57 @@
+@use "../global" as g;
+
+.visible-xs {
+  display: none;
+
+  @include g.mq(xs) {
+    display: block;
+  }
+}
+
+.visible-md {
+  display: none;
+
+  @include g.mq(md) {
+    display: block;
+  }
+}
+
+.visible-lg {
+  display: none;
+
+  @include g.mq(lg) {
+    display: block;
+  }
+}
+
+.visible-sm__inline {
+  display: none;
+
+  @include g.mq(sm) {
+    display: inline;
+  }
+}
+
+.visible-md__inline {
+  display: none;
+
+  @include g.mq(md) {
+    display: inline;
+  }
+}
+
+.visible-lg__inline {
+  display: none;
+
+  @include g.mq(lg) {
+    display: inline;
+  }
+}
+
+.visible-xl {
+  display: none;
+
+  @include g.mq(xl) {
+    display: block;
+  }
+}

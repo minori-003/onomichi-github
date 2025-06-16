@@ -1,0 +1,8 @@
+@use "../global" as g;
+
+.body {
+  background: g.$color-sub-LBlue;
+  &.is-checked {
+    overflow: hidden;
+  }
+}

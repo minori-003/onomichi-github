@@ -1,0 +1,30 @@
+@use "../global" as g;
+
+.link-text {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.3s, -webkit-text-decoration 0.3s;
+  transition: text-decoration 0.3s, color 0.3s;
+  transition: text-decoration 0.3s, color 0.3s, -webkit-text-decoration 0.3s;
+  &:hover {
+    color: g.$color-sub-DBlue;
+  }
+}
+
+.link-box {
+  transition: outline 0.1s linear;
+  &:hover {
+    cursor: pointer;
+    outline: 2px solid g.$color-main-Blue;
+    outline-offset: -2px;
+  }
+}
+
+.link-filter {
+  :hover {
+    -webkit-filter: brightness(0) saturate(100%) invert(71%) sepia(58%)
+      saturate(316%) hue-rotate(150deg) brightness(83%) contrast(84%);
+    filter: brightness(0) saturate(100%) invert(71%) sepia(58%) saturate(316%)
+      hue-rotate(150deg) brightness(83%) contrast(84%);
+  }
+}

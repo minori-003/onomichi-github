@@ -1,0 +1,9 @@
+@use "../global" as g;
+
+.font-bold {
+  font-weight: g.$font-weight-bold;
+}
+
+.font-medium {
+  font-weight: g.$font-weight-medium;
+}
