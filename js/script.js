@@ -45,8 +45,13 @@ document
       drawerContent.classList.remove("is-checked");
       drawerBody.classList.remove("is-checked");
       hamburgerInertBoxes.forEach(function (hamburgerInertBox) {
+      if (hamburgerInertBox.classList.contains("is-inert")) {
         hamburgerInertBox.classList.remove("is-inert");
         hamburgerInertBox.inert = false; //操作を受け付ける様にする
+      } else {
+        hamburgerInertBox.classList.add("is-inert");
+        hamburgerInertBox.inert = true; //操作を受け付けない様にする
+      }
     });
     });
   });

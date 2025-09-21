@@ -44,7 +44,7 @@
   }
 }
 
-.header__nav__wrapper {
+.header__nav-wrapper-sp {
   position: fixed;
   top: g.$header-height;
   left: 0;
@@ -69,16 +69,11 @@
   }
 
   @include g.mq(lg) {
-    position: static;
-    padding: 0;
-    top: 0;
-    -webkit-transform: translateY(0);
-    transform: translateY(0);
-    height: auto;
+    display: none;
   }
 }
 
-.header__nav {
+.header__nav-sp {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -91,15 +86,9 @@
     -webkit-transform: translateY(0);
     transform: translateY(0);
   }
-
-  @include g.mq(lg) {
-    position: static;
-    padding: 0;
-    top: 0;
-  }
 }
 
-.header__list {
+.header__list-sp {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -107,35 +96,59 @@
   text-align: center;
 
   @include g.mq(lg) {
-    flex-direction: row;
-    align-items: center;
-    justify-content: end;
+    display: none;
   }
 }
 
-.header__item {
-  & + .header__item {
+.header__item-sp {
+  & + .header__item-sp {
     margin-top: 10px;
 
     @include g.mq(lg) {
       margin-top: 0;
     }
   }
+}
+
+.header__link-sp {
+  padding: 8px 2px;
+  font-size: g.$font-size-md;
+  transition: color 0.3s, -webkit-text-decoration 0.3s;
+  transition: text-decoration 0.3s, color 0.3s;
+  transition: text-decoration 0.3s, color 0.3s, -webkit-text-decoration 0.3s;
+}
+
+.header__nav-wrapper-pc {
+  display: none;
 
   @include g.mq(lg) {
-    margin-left: 8px;
+    display: block;
+    padding: 0;
+    height: auto;
+  }
+}
+
+.header__list-pc {
+  display: none;
+  @include g.mq(lg) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    display: flex;
+  }
+}
+
+.header__item-pc {
+  @include g.mq(lg) {
+    margin-left: 12px;
     &:last-child {
       margin-left: 15px;
     }
   }
 }
 
-.header__link {
-  padding: 8px 2px;
-  font-size: g.$font-size-md;
-  transition: color 0.3s, -webkit-text-decoration 0.3s;
-  transition: text-decoration 0.3s, color 0.3s;
-  transition: text-decoration 0.3s, color 0.3s, -webkit-text-decoration 0.3s;
+.header__link-pc {
   @include g.mq(lg) {
     font-size: g.$font-size-base-sp;
     &:hover {
