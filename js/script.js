@@ -89,7 +89,6 @@ modalBtns.forEach(function (modalBtn) {
     modalInertBoxes.forEach(function (modalInertBox) {
         modalInertBox.classList.add("is-inert");
         modalInertBox.inert = true; //操作を受け付けない様にする
-      
     });
   };
 });
@@ -104,7 +103,6 @@ closeBtns.forEach(function (closeBtn) {
     modalInertBoxes.forEach(function (modalInertBox) {
         modalInertBox.classList.remove("is-inert");
         modalInertBox.inert = false; //操作を受け付ける様にする
-      
     });
   };
 });
@@ -116,15 +114,17 @@ closeBtns.forEach(function (closeBtn) {
 //   }
 // };
 
-window.onclick = function (event) {
-  if (
-    event.target.classList.contains("prizes-modal") &&
-    event.target.classList.contains("is-opened")
-  ) {
-    event.target.classList.remove("is-opened");
-    drawerBody.classList.remove("is-checked");
-  }
-};
+
+// カードの外の背景をクリックしてもモーダルウィンドウが解除される
+// window.onclick = function (event) {
+//   if (
+//     event.target.classList.contains("prizes-modal") &&
+//     event.target.classList.contains("is-opened")
+//   ) {
+//     event.target.classList.remove("is-opened");
+//     drawerBody.classList.remove("is-checked");
+//   }
+// };
 
 // about__swiper
 
