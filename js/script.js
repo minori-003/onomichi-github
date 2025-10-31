@@ -81,6 +81,8 @@ function scroll_top() {
 
 const modalBtns = document.querySelectorAll(".modal-open");
 const modalInertBoxes = document.querySelectorAll(".js-modal-inert");
+
+// モーダルウィンドウを開く
 modalBtns.forEach(function (modalBtn) {
   modalBtn.onclick = function () {
     var modal = modalBtn.getAttribute("data-modal");
@@ -93,6 +95,7 @@ modalBtns.forEach(function (modalBtn) {
   };
 });
 
+// モーダルウィンドウを閉じる
 const closeBtns = document.querySelectorAll(".modal-close");
 closeBtns.forEach(function (closeBtn) {
   closeBtn.onclick = function () {
@@ -115,16 +118,20 @@ closeBtns.forEach(function (closeBtn) {
 // };
 
 
-// カードの外の背景をクリックしてもモーダルウィンドウが解除される
-// window.onclick = function (event) {
-//   if (
-//     event.target.classList.contains("prizes-modal") &&
-//     event.target.classList.contains("is-opened")
-//   ) {
-//     event.target.classList.remove("is-opened");
-//     drawerBody.classList.remove("is-checked");
-//   }
-// };
+//カードの外の背景をクリックしてもモーダルウィンドウが解除される
+window.onclick = function (event) {
+  if (
+    event.target.classList.contains("prizes-modal") &&
+    event.target.classList.contains("is-opened")
+  ) {
+    event.target.classList.remove("is-opened");
+    drawerBody.classList.remove("is-checked");
+    modalInertBoxes.forEach(function (modalInertBox) {
+        modalInertBox.classList.remove("is-inert");
+        modalInertBox.inert = false; //操作を受け付ける様にする
+    });
+  }
+};
 
 // about__swiper
 

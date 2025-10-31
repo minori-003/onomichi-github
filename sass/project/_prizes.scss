@@ -162,46 +162,49 @@
     transition: scale 0.1s linear;
   }
   &:hover {
-    &::after {
-      outline: 4px solid g.$color-main-Blue;
-      outline-offset: -4px;
-    }
+    &:hover,
+    &:focus {
+      &::after {
+        outline: 4px solid g.$color-main-Blue;
+        outline-offset: -4px;
+      }
 
-    .prizes-card::after {
-      display: block;
-    }
+      .prizes-card::after {
+        display: block;
+      }
 
-    .prizes-card__image {
-      img {
-        scale: 1.2;
+      .prizes-card__image {
+        img {
+          scale: 1.2;
+        }
+      }
+      .prizes-card__text {
+        &::before {
+          border-color: transparent g.$color-main-Blue g.$color-main-Blue
+            transparent;
+        }
       }
     }
-    .prizes-card__text {
-      &::before {
-        border-color: transparent g.$color-main-Blue g.$color-main-Blue
-          transparent;
+    &:focus {
+      &::after {
+        outline: 4px solid g.$color-main-Blue;
+        outline-offset: -4px;
       }
-    }
-  }
-  &:focus {
-    &::after {
-      outline: 4px solid g.$color-main-Blue;
-      outline-offset: -4px;
-    }
 
-    .prizes-card::after {
-      display: block;
-    }
-
-    .prizes-card__image {
-      img {
-        scale: 1.2;
+      .prizes-card::after {
+        display: block;
       }
-    }
-    .prizes-card__text {
-      &::before {
-        border-color: transparent g.$color-main-Blue g.$color-main-Blue
-          transparent;
+
+      .prizes-card__image {
+        img {
+          scale: 1.2;
+        }
+      }
+      .prizes-card__text {
+        &::before {
+          border-color: transparent g.$color-main-Blue g.$color-main-Blue
+            transparent;
+        }
       }
     }
   }

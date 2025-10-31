@@ -2122,30 +2122,30 @@ body {
   display: block;
   transition: scale 0.1s linear;
 }
-.prizes-card:hover::after {
+.prizes-card:hover:hover::after, .prizes-card:hover:focus::after {
   outline: 4px solid #9ed0e0;
   outline-offset: -4px;
 }
-.prizes-card:hover .prizes-card::after {
+.prizes-card:hover:hover .prizes-card::after, .prizes-card:hover:focus .prizes-card::after {
   display: block;
 }
-.prizes-card:hover .prizes-card__image img {
+.prizes-card:hover:hover .prizes-card__image img, .prizes-card:hover:focus .prizes-card__image img {
   scale: 1.2;
 }
-.prizes-card:hover .prizes-card__text::before {
+.prizes-card:hover:hover .prizes-card__text::before, .prizes-card:hover:focus .prizes-card__text::before {
   border-color: transparent #9ed0e0 #9ed0e0 transparent;
 }
-.prizes-card:focus::after {
+.prizes-card:hover:focus::after {
   outline: 4px solid #9ed0e0;
   outline-offset: -4px;
 }
-.prizes-card:focus .prizes-card::after {
+.prizes-card:hover:focus .prizes-card::after {
   display: block;
 }
-.prizes-card:focus .prizes-card__image img {
+.prizes-card:hover:focus .prizes-card__image img {
   scale: 1.2;
 }
-.prizes-card:focus .prizes-card__text::before {
+.prizes-card:hover:focus .prizes-card__text::before {
   border-color: transparent #9ed0e0 #9ed0e0 transparent;
 }
 
