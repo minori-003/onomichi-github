@@ -161,9 +161,11 @@
     display: block;
     transition: scale 0.1s linear;
   }
-  &:hover {
-    &:hover,
-    &:focus {
+  &:focus {
+    outline: none;
+  }
+  
+  &:hover,&:focus {
       &::after {
         outline: 4px solid g.$color-main-Blue;
         outline-offset: -4px;
@@ -184,29 +186,6 @@
             transparent;
         }
       }
-    }
-    &:focus {
-      &::after {
-        outline: 4px solid g.$color-main-Blue;
-        outline-offset: -4px;
-      }
-
-      .prizes-card::after {
-        display: block;
-      }
-
-      .prizes-card__image {
-        img {
-          scale: 1.2;
-        }
-      }
-      .prizes-card__text {
-        &::before {
-          border-color: transparent g.$color-main-Blue g.$color-main-Blue
-            transparent;
-        }
-      }
-    }
   }
 }
 
