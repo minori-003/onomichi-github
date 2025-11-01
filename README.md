@@ -21,9 +21,9 @@ CSS設計は、``style.scss`` を起点とし、以下の5つのレイヤーに�
 | ファイル名 | 役割 | 技術的特徴 |
 | --- | --- | --- |
 | ``_color.scss`` | カラーパレット | $color-main-Blue、$color-accent-Yellowなど、意図が明確なセマンティックな変数名でブランドカラーを統一 。|
-|``_font.scss``|タイポグラフィ	和欧フォント|$font-size-base-sp〜$font-size-xlまでのフォントスケール、ウェイト（$font-weight-bold）を管理。|
-|``_width.scss ``/ ``_height.scss``|レイアウト定数|$pc-inner: 1024px;、$header-height: 64px;など、主要な寸法を定数化し、設計の一貫性を担保。|
-|``_breakpoints.scss``|レスポンシブ | xs, sm, md, lg, xlの5段階のブレイクポイントを定義。**@mixin mq()**により、Mobile-Firstな記述を徹底。|
+| ``_font.scss`` | タイポグラフィ	和欧フォント|$font-size-base-sp〜$font-size-xlまでのフォントスケール、ウェイト（$font-weight-bold）を管理。|
+| ``_width.scss``/ ``_height.scss`` | レイアウト定数|$pc-inner: 1024px;、$header-height: 64px;など、主要な寸法を定数化し、設計の一貫性を担保。|
+| ``_breakpoints.scss`` | レスポンシブ  |  xs, sm, md, lg, xlの5段階のブレイクポイントを定義。**@mixin mq()**により、Mobile-Firstな記述を徹底。|
 
 ### 2-2. style.scss の構造 (モジュール管理)
 すべてのSCSSファイルは ``global`` 以外、直接読み込まれません。``@use`` と ``@forward`` によって依存関係が明確に管理され、各ファイルは ``g.$color-main-Blue`` や ``@include g.mq(md) ``のように、**名前空間（``g.``）付きでのみ**グローバル変数・Mixinにアクセスできます。これにより、意図しないグローバル汚染を防ぎます。
@@ -40,38 +40,38 @@ CSS設計は、``style.scss`` を起点とし、以下の5つのレイヤーに�
 ## 3. インタラクションとアクセシビリティ (JavaScript) 💻
 ``script.js`` では、Web標準のAPIを積極的に活用し、高度なUXとアクセシビリティを両立しています。
 
-+ 【a11y】inert属性によるフォーカス制御:
-	+ ハンバーガーメニュー展開時、背景となるメインコンテンツ（header, main, footer）に element.inert = true を動的に付与。
-	+ これにより、メニューが開いている間、スクリーンリーダーやキーボードのTab移動が背景コンテンツに迷い込むのを防ぎ、アクセシビリティを劇的に向上させています。
++ 【a11y】``inert``**属性によるフォーカス制御**:
+	+ ハンバーガーメニュー展開時、背景となるメインコンテンツ（``header``, ``main``, ``footer``）に ``element.inert = true`` を動的に付与。
+	+ これにより、メニューが開いている間、**スクリーンリーダーやキーボードのTab移動が背景コンテンツに迷い込むのを防ぎ**、アクセシビリティを劇的に向上させています。
 
 + 【Animation】Web Animations API (WAAPI):
-	+FAQのアコーディオン（detailsタグ）開閉時、CSSのheight: autoでは不可能なスムーズなアニメーションを、element.animate() を使って自前で実装。
-	+duration: 400, easing: "ease-out" の共通設定を用い、パフォーマンスの高いリッチな開閉アニメーションを実現しています。
+	+FAQのアコーディオン（``detailsタグ``）開閉時、CSSの``height: auto``では不可能なスムーズなアニメーションを、``element.animate() ``を使って自前で実装。
+	+``duration: 400``, ``easing: "ease-out"`` の共通設定を用い、パフォーマンスの高いリッチな開閉アニメーションを実現しています。
 
 + 【UX】動的ビューポート制御:
-	+ window.outerWidthを監視し、375px以下のデバイス幅でviewportのcontentをwidth=375に固定。それ以外ではwidth=device-widthに切り替えています。
+	+ ``window.outerWidth``を監視し、375px以下のデバイス幅で``viewport``の``contentをwidth=375``に固定。それ以外では``width=device-width``に切り替えています。
 	+これにより、一部のスマートフォンで発生するレイアウト崩れを未然に防ぎます。
 
 + 【UX】フォームバリデーション:
-	+ お問い合わせフォームでは、_contact.scss にてCSSの :user-invalid 擬似クラスを活用。
-	+ ユーザーが入力操作を完了した後で初めてエラー（赤枠など）が表示されるため、入力中にエラーが表示されるストレスを与えません。
+	+ お問い合わせフォームでは、``_contact.scss`` にてCSSの ``:user-invalid`` 擬似クラスを活用。
+	+ **ユーザーが入力操作を完了した後で**初めてエラー（赤枠など）が表示されるため、入力中にエラーが表示されるストレスを与えません。
 
 + ライブラリの活用:
-	+ AboutセクションとSpotsセクションのスライダーには、Swiper.js を採用し、レスポンシブ対応のタッチスライダーを実装しています。
+	+ ``Aboutセクション``と``Spotsセクション``のスライダーには、**Swiper.js** を採用し、レスポンシブ対応のタッチスライダーを実装しています。
 
 ## 4. セクション別 実装ハイライト (Project Layer) 🎨
 ``project/`` ディレクトリには、各セクション固有の高度なCSSテクニックが実装されています。
 
 | ファイル / セクション | 実装の技術的ハイライト |
 | --- | --- |
-| _fv.scss (ファーストビュー)	 | 複数の画像要素をposition: absoluteで重ね、z-indexを駆使したリッチなビジュアルコラージュを構築。 |
-| _about.scss (About)	 | 背景装飾（波線、猫の足跡）をz-index: -2でコンテンツカードの背後に配置し、奥行きのあるアートボードのようなデザインを実現。 |
-| _entry.scss (参加方法)	 | デスクトップ表示では grid-template-columns: repeat(3, 1fr); を使用し、参加ステップをモダンな3列グリッドレイアウトで構成。 |
-| _spots.scss (Spots)	 | セクションの上下境界線に、::before / ::after 擬似要素を用いてSVG背景画像を配置。波型のカスタムセパレーターを実装。 |
-| _prizes.scss (賞品) | 	賞品カードの右下隅に``::after``（虫眼鏡アイコン）を配置。ホバーヒントとして機能し、クリックでモーダルが開くことを視覚的に示唆。 |
-| _faq.scss (FAQ)	| HTML標準の**details要素**をスタイリング。[open]属性と.is-openedクラスを連携させ、JSのelement.animate()と連動するカスタムアコーディオンを実装。 |
-| _contact.scss (Contact)	 | :user-invalidによるUXの高いフォーム検証に加え、clip: rect(0, 0, 0, 0)を使ったアクセシブルなカスタムチェックボックスを実装。 |
-| _information.scss (規約)	 | 規約テーブルをflex-direction: column（SP）からflex-direction: row（PC）に切り替え、レスポンシブなテーブルレイアウトを実現。 |
+| ``_fv.scss`` (ファーストビュー)	 | 複数の画像要素を``position: absolute``で重ね、z-indexを駆使したリッチなビジュアルコラージュを構築。 |
+| ``_about.scss`` (About)	 | 背景装飾（波線、猫の足跡）を``z-index: -2``でコンテンツカードの背後に配置し、奥行きのあるアートボードのようなデザインを実現。 |
+| ``_entry.scss`` (参加方法)	 | デスクトップ表示では ``grid-template-columns: repeat(3, 1fr);`` を使用し、参加ステップをモダンな3列グリッドレイアウトで構成。 |
+| ``_spots.scss`` (Spots)	 | セクションの上下境界線に、``::before`` / ``::after`` 擬似要素を用いてSVG背景画像を配置。波型のカスタムセパレーターを実装。 |
+| ``_prizes.scss`` (賞品) | 	賞品カードの右下隅に``::after``（虫眼鏡アイコン）を配置。ホバーヒントとして機能し、クリックでモーダルが開くことを視覚的に示唆。 |
+| ``_faq.scss (FAQ)`` | HTML標準の**details要素**をスタイリング。[open]属性と``.is-opened``クラスを連携させ、JSの``element.animate()``と連動するカスタムアコーディオンを実装。 |
+| ``_contact.scss (Contact)`` | ``:user-invalid``によるUXの高いフォーム検証に加え、``clip: rect(0, 0, 0, 0)``を使ったアクセシブルなカスタムチェックボックスを実装。 |
+| ``_information.scss (規約)	`` | 規約テーブルを``flex-direction: column（SP）``から``flex-direction: row（PC）``に切り替え、レスポンシブなテーブルレイアウトを実現。 |
 
 ## 5. SCSSファイル構成（sass/）
 <pre>
@@ -127,3 +127,10 @@ sass/
 │
 └── style.scss           # ★コンパイルの起点 (@useで全レイヤーを結合)
 </pre>
+
+## 6実行方法
+SCSSファイルをコンパイラ（Dart Sass, Node-Sassなど）に入力し、style.cssを出力します。
+
+index.htmlに、出力されたCSSファイルと、必要なJSライブラリ（swiper-bundle.min.js）および自作JSファイル（script.js）を読み込みます。
+
+Webブラウザで index.html を開いてください。
