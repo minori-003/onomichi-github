@@ -17,14 +17,12 @@
 // ハンバーガーメニュー
 const drawerIcon = document.querySelector("#js-drawer-icon");
 const drawerContent = document.querySelector("#js-drawer-content");
-const drawerBody = document.querySelector(".body");
 const hamburgerInertBoxes = document.querySelectorAll(".js-hamburger-inert"); // キーボードからの操作を停止させる要素の検出
 if (drawerIcon) {
   drawerIcon.addEventListener("click", function (e) {
     e.preventDefault();
     drawerIcon.classList.toggle("is-checked");
     drawerContent.classList.toggle("is-checked");
-    drawerBody.classList.toggle("is-checked");
     hamburgerInertBoxes.forEach(function (hamburgerInertBox) {
       if (hamburgerInertBox.classList.contains("is-inert")) {
         hamburgerInertBox.classList.remove("is-inert");
@@ -43,7 +41,6 @@ document
     link.addEventListener("click", function (e) {
       drawerIcon.classList.remove("is-checked");
       drawerContent.classList.remove("is-checked");
-      drawerBody.classList.remove("is-checked");
       hamburgerInertBoxes.forEach(function (hamburgerInertBox) {
       if (hamburgerInertBox.classList.contains("is-inert")) {
         hamburgerInertBox.classList.remove("is-inert");
@@ -79,15 +76,14 @@ function scroll_top() {
 
 // モーダルウィンドウ
 
-const modalBtns = document.querySelectorAll(".modal-open");
+const modalActiveBtns = document.querySelectorAll(".js-modal-active");
 const modalInertBoxes = document.querySelectorAll(".js-modal-inert");
 
 // モーダルウィンドウを開く
-modalBtns.forEach(function (modalBtn) {
-  modalBtn.onclick = function () {
-    var modal = modalBtn.getAttribute("data-modal");
-    document.getElementById(modal).classList.add("is-opened");
-    drawerBody.classList.add("is-checked");
+modalActiveBtns.forEach(function (modalActiveBtn) {
+  modalActiveBtn.onclick = function () {
+    var activeBtn = modalActiveBtn.getAttribute("data-modal");
+    document.getElementById(activeBtn).classList.add("is-active");
     modalInertBoxes.forEach(function (modalInertBox) {
         modalInertBox.classList.add("is-inert");
         modalInertBox.inert = true; //操作を受け付けない様にする
@@ -96,13 +92,12 @@ modalBtns.forEach(function (modalBtn) {
 });
 
 // モーダルウィンドウを閉じる
-const closeBtns = document.querySelectorAll(".modal-close");
-closeBtns.forEach(function (closeBtn) {
-  closeBtn.onclick = function () {
-    var modal = closeBtn.closest(".prizes-modal");
+const modalCloseBtns = document.querySelectorAll(".js-modal-close");
+modalCloseBtns.forEach(function (modalCloseBtn) {
+  modalCloseBtn.onclick = function () {
+    var activeModal = modalCloseBtn.closest(".prizes-modal");
     // modal.style.display = "none";
-    modal.classList.remove("is-opened");
-    drawerBody.classList.remove("is-checked");
+    activeModal.classList.remove("is-active");
     modalInertBoxes.forEach(function (modalInertBox) {
         modalInertBox.classList.remove("is-inert");
         modalInertBox.inert = false; //操作を受け付ける様にする
@@ -110,28 +105,36 @@ closeBtns.forEach(function (closeBtn) {
   };
 });
 
-// window.onclick = function (event) {
-//   if (event.target.className === "prizes-modal") {
-//     event.target.style.display = "none";
-//     drawerBody.classList.remove("is-checked");
-//   }
-// };
-
-
 //カードの外の背景をクリックしてもモーダルウィンドウが解除される
-window.onclick = function (event) {
+window.addEventListener('click', function (event) {
   if (
     event.target.classList.contains("prizes-modal") &&
-    event.target.classList.contains("is-opened")
+    event.target.classList.contains("is-active")
   ) {
-    event.target.classList.remove("is-opened");
-    drawerBody.classList.remove("is-checked");
+    event.target.classList.remove("is-active");
     modalInertBoxes.forEach(function (modalInertBox) {
         modalInertBox.classList.remove("is-inert");
         modalInertBox.inert = false; //操作を受け付ける様にする
     });
   }
-};
+});
+
+// escapeキーが押された時にモーダルウィンドウを解除する
+document.addEventListener("keydown", function (e) {
+  // Escapeキーが押された場合
+  if (e.key === "Escape") {
+    // 現在開いているモーダルを検索
+    const activeModal = document.querySelector(".prizes-modal.is-active");
+    if (activeModal) {
+      activeModal.classList.remove("is-active");
+      // inert属性も解除
+      modalInertBoxes.forEach(function (modalInertBox) {
+        modalInertBox.classList.remove("is-inert");
+        modalInertBox.inert = false;
+      });
+    }
+  }
+});
 
 // about__swiper
 

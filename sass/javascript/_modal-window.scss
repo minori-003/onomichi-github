@@ -16,7 +16,7 @@
   opacity: 0;
   overflow: auto;
 
-  &.is-opened {
+  &.is-active {
     display: block;
     -webkit-animation-name: fadeIn;
     animation-name: fadeIn;

@@ -352,7 +352,7 @@ body {
 .body {
   background: #e9f6f8;
 }
-.body.is-checked {
+.body:has(.is-checked), .body:has(.is-active) {
   overflow: hidden;
 }
 
@@ -3380,7 +3380,7 @@ body {
   opacity: 0;
   overflow: auto;
 }
-.prizes-modal.is-opened {
+.prizes-modal.is-active {
   display: block;
   -webkit-animation-name: fadeIn;
   animation-name: fadeIn;
