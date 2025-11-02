@@ -27,9 +27,8 @@ body {
   padding-bottom: 4px;
 }
 
-.button-xs {
+.button-l, .button-m--custom, .button-m, .button-s, .button-xs {
   display: inline-flex;
-  padding: 4px 22px 6px;
   justify-content: center;
   align-items: center;
   color: #4a3636;
@@ -46,105 +45,33 @@ body {
   white-space: nowrap;
   transition: background 0.3s;
 }
-.button-xs:hover {
+.button-l:hover, .button-m--custom:hover, .button-m:hover, .button-s:hover, .button-xs:hover {
   background-color: #ffee56;
   cursor: pointer;
+}
+
+.button-xs {
+  padding: 4px 22px 6px;
 }
 
 .button-s {
-  display: inline-flex;
   padding: 4px 22px 6px;
-  justify-content: center;
-  align-items: center;
-  color: #4a3636;
-  /* LP/White */
-  background: #ffffff;
-  /* LP/Blown */
-  border: 2px solid #4a3636;
-  /* ボタンのシャドウ */
-  box-shadow: 0px 4px 0px #4a3636;
-  border-radius: 40px;
-  transition: background-color;
   font-size: 14px;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: background 0.3s;
-}
-.button-s:hover {
-  background-color: #ffee56;
-  cursor: pointer;
 }
 
 .button-m {
-  display: inline-flex;
   padding: 4px 22px 6px;
-  justify-content: center;
-  align-items: center;
-  color: #4a3636;
-  /* LP/White */
-  background: #ffffff;
-  /* LP/Blown */
-  border: 2px solid #4a3636;
-  /* ボタンのシャドウ */
-  box-shadow: 0px 4px 0px #4a3636;
-  border-radius: 40px;
-  transition: background-color;
   font-size: 16px;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: background 0.3s;
-}
-.button-m:hover {
-  background-color: #ffee56;
-  cursor: pointer;
 }
 
-.button-m__custom {
-  display: inline-flex;
+.button-m--custom {
   padding: 4px 38px 6px;
-  justify-content: center;
-  align-items: center;
-  color: #4a3636;
-  /* LP/White */
-  background: #ffffff;
-  /* LP/Blown */
-  border: 2px solid #4a3636;
-  /* ボタンのシャドウ */
-  box-shadow: 0px 4px 0px #4a3636;
-  border-radius: 40px;
-  transition: background-color;
   font-size: 16px;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: background 0.3s;
-}
-.button-m__custom:hover {
-  background-color: #ffee56;
-  cursor: pointer;
 }
 
 .button-l {
-  display: inline-flex;
   padding: 8px 38px 9px;
-  justify-content: center;
-  align-items: center;
-  color: #4a3636;
-  /* LP/White */
-  background: #ffffff;
-  /* LP/Blown */
-  border: 3px solid #4a3636;
-  /* ボタンのシャドウ */
-  box-shadow: 0px 4px 0px #4a3636;
-  border-radius: 40px;
-  transition: background-color;
   font-size: 20px;
-  font-weight: 700;
-  white-space: nowrap;
-  transition: background 0.3s;
-}
-.button-l:hover {
-  background-color: #ffee56;
-  cursor: pointer;
 }
 
 .link-text {
