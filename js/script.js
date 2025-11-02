@@ -85,7 +85,6 @@ modalActiveBtns.forEach(function (modalActiveBtn) {
     var activeBtn = modalActiveBtn.getAttribute("data-modal");
     document.getElementById(activeBtn).classList.add("is-active");
     modalInertBoxes.forEach(function (modalInertBox) {
-        modalInertBox.classList.add("is-inert");
         modalInertBox.inert = true; //操作を受け付けない様にする
     });
   };
@@ -96,10 +95,8 @@ const modalCloseBtns = document.querySelectorAll(".js-modal-close");
 modalCloseBtns.forEach(function (modalCloseBtn) {
   modalCloseBtn.onclick = function () {
     var activeModal = modalCloseBtn.closest(".prizes-modal");
-    // modal.style.display = "none";
     activeModal.classList.remove("is-active");
     modalInertBoxes.forEach(function (modalInertBox) {
-        modalInertBox.classList.remove("is-inert");
         modalInertBox.inert = false; //操作を受け付ける様にする
     });
   };
@@ -113,7 +110,6 @@ window.addEventListener('click', function (event) {
   ) {
     event.target.classList.remove("is-active");
     modalInertBoxes.forEach(function (modalInertBox) {
-        modalInertBox.classList.remove("is-inert");
         modalInertBox.inert = false; //操作を受け付ける様にする
     });
   }
@@ -129,7 +125,6 @@ document.addEventListener("keydown", function (e) {
       activeModal.classList.remove("is-active");
       // inert属性も解除
       modalInertBoxes.forEach(function (modalInertBox) {
-        modalInertBox.classList.remove("is-inert");
         modalInertBox.inert = false;
       });
     }
