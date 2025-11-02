@@ -14,24 +14,31 @@
   switchViewport();
 })();
 
+// 共通ターゲット要素 (main, footer) のinertを切り替える関数
+const toggleCommonInert = (shouldBeInert) => {
+  const commonTargets = document.querySelectorAll(".js-common-inert-target");
+  
+  commonTargets.forEach(element => {
+    element.inert = shouldBeInert;
+  });
+};
+
+// モーダル表示時に操作するheader要素を取得
+const modalHeaderTarget = document.querySelector(".js-modal-inert-header");
+
 // ハンバーガーメニュー
 const drawerIcon = document.querySelector("#js-drawer-icon");
 const drawerContent = document.querySelector("#js-drawer-content");
-const hamburgerInertBoxes = document.querySelectorAll(".js-hamburger-inert"); // キーボードからの操作を停止させる要素の検出
+const drawerInert = document.querySelector(".js-drawer-inert");
 if (drawerIcon) {
   drawerIcon.addEventListener("click", function (e) {
     e.preventDefault();
     drawerIcon.classList.toggle("is-checked");
     drawerContent.classList.toggle("is-checked");
-    hamburgerInertBoxes.forEach(function (hamburgerInertBox) {
-      if (hamburgerInertBox.classList.contains("is-inert")) {
-        hamburgerInertBox.classList.remove("is-inert");
-        hamburgerInertBox.inert = false; //操作を受け付ける様にする
-      } else {
-        hamburgerInertBox.classList.add("is-inert");
-        hamburgerInertBox.inert = true; //操作を受け付けない様にする
-      }
-    });
+    const isDrawerOpen = drawerContent.classList.contains("is-checked");
+    // 共通関数を呼び出し: main と footer を無効化/有効化
+    toggleCommonInert(isDrawerOpen);
+    drawerInert.toggleAttribute('inert');
   });
 }
 
@@ -41,15 +48,11 @@ document
     link.addEventListener("click", function (e) {
       drawerIcon.classList.remove("is-checked");
       drawerContent.classList.remove("is-checked");
-      hamburgerInertBoxes.forEach(function (hamburgerInertBox) {
-      if (hamburgerInertBox.classList.contains("is-inert")) {
-        hamburgerInertBox.classList.remove("is-inert");
-        hamburgerInertBox.inert = false; //操作を受け付ける様にする
-      } else {
-        hamburgerInertBox.classList.add("is-inert");
-        hamburgerInertBox.inert = true; //操作を受け付けない様にする
-      }
-    });
+      const isDrawerOpen = drawerContent.classList.contains("is-checked");
+      // 共通関数を呼び出し: main と footer を無効化/有効化
+      toggleCommonInert(isDrawerOpen);
+      drawerInert.toggleAttribute('inert');
+      // headerは操作しないため、header内のボタンは機能し続ける
     });
   });
 
@@ -84,9 +87,13 @@ modalActiveBtns.forEach(function (modalActiveBtn) {
   modalActiveBtn.onclick = function () {
     var activeBtn = modalActiveBtn.getAttribute("data-modal");
     document.getElementById(activeBtn).classList.add("is-active");
-    modalInertBoxes.forEach(function (modalInertBox) {
-        modalInertBox.inert = true; //操作を受け付けない様にする
-    });
+    // 1. 共通ターゲットを無効化 (main, footer)
+  toggleCommonInert(true);
+  
+  // 2. モーダル専用ターゲットを無効化 (header)
+  if (modalHeaderTarget) {
+    modalHeaderTarget.inert = true;
+  }
   };
 });
 
@@ -96,9 +103,13 @@ modalCloseBtns.forEach(function (modalCloseBtn) {
   modalCloseBtn.onclick = function () {
     var activeModal = modalCloseBtn.closest(".prizes-modal");
     activeModal.classList.remove("is-active");
-    modalInertBoxes.forEach(function (modalInertBox) {
-        modalInertBox.inert = false; //操作を受け付ける様にする
-    });
+    // 1. 共通ターゲットを有効化 (main, footer)
+    toggleCommonInert(false);
+    
+    // 2. モーダル専用ターゲットを有効化 (header)
+    if (modalHeaderTarget) {
+      modalHeaderTarget.inert = false;
+    }
   };
 });
 
@@ -109,9 +120,13 @@ window.addEventListener('click', function (event) {
     event.target.classList.contains("is-active")
   ) {
     event.target.classList.remove("is-active");
-    modalInertBoxes.forEach(function (modalInertBox) {
-        modalInertBox.inert = false; //操作を受け付ける様にする
-    });
+    // 1. 共通ターゲットを有効化 (main, footer)
+    toggleCommonInert(false);
+    
+    // 2. モーダル専用ターゲットを有効化 (header)
+    if (modalHeaderTarget) {
+      modalHeaderTarget.inert = false;
+    }
   }
 });
 
@@ -124,9 +139,13 @@ document.addEventListener("keydown", function (e) {
     if (activeModal) {
       activeModal.classList.remove("is-active");
       // inert属性も解除
-      modalInertBoxes.forEach(function (modalInertBox) {
-        modalInertBox.inert = false;
-      });
+      // 1. 共通ターゲットを有効化 (main, footer)
+      toggleCommonInert(false);
+      
+      // 2. モーダル専用ターゲットを有効化 (header)
+      if (modalHeaderTarget) {
+        modalHeaderTarget.inert = false;
+      }
     }
   }
 });
