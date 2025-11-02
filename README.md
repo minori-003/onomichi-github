@@ -128,7 +128,7 @@ sass/
 └── style.scss           # ★コンパイルの起点 (@useで全レイヤーを結合)
 </pre>
 
-## 6実行方法
+## 6. 実行方法
 SCSSファイルをコンパイラ（Dart Sass, Node-Sassなど）に入力し、style.cssを出力します。
 
 index.htmlに、出力されたCSSファイルと、必要なJSライブラリ（swiper-bundle.min.js）および自作JSファイル（script.js）を読み込みます。
