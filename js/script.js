@@ -58,19 +58,19 @@ document
 
 // トップへ戻るボタン
 const pageTop = document.querySelector("#js-page-top");
-var windowSize = window.innerWidth;
-if (windowSize >= 768) {
-  window.addEventListener("scroll", function () {
-    if (100 < window.scrollY) {
-      pageTop.classList.add("is-show");
-    } else {
-      pageTop.classList.remove("is-show");
-    }
-  });
+if(pageTop){
+  if (window.innerWidth >= 768) {
+    window.addEventListener("scroll", function () {
+      if (100 < window.scrollY) {
+        pageTop.classList.add("is-show");
+      } else {
+        pageTop.classList.remove("is-show");
+      }
+    });
+  }
+  // .pageTopをクリックしたら
+  pageTop.addEventListener("click", scroll_top);
 }
-
-// .pageTopをクリックしたら
-pageTop.addEventListener("click", scroll_top);
 
 // ページ上部へスムーズに移動
 function scroll_top() {
@@ -85,7 +85,7 @@ const modalInertBoxes = document.querySelectorAll(".js-modal-inert");
 // モーダルウィンドウを開く
 modalActiveBtns.forEach(function (modalActiveBtn) {
   modalActiveBtn.onclick = function () {
-    var activeBtn = modalActiveBtn.getAttribute("data-modal");
+    let activeBtn = modalActiveBtn.getAttribute("data-modal");
     document.getElementById(activeBtn).classList.add("is-active");
     // 1. 共通ターゲットを無効化 (main, footer)
   toggleCommonInert(true);
@@ -101,7 +101,7 @@ modalActiveBtns.forEach(function (modalActiveBtn) {
 const modalCloseBtns = document.querySelectorAll(".js-modal-close");
 modalCloseBtns.forEach(function (modalCloseBtn) {
   modalCloseBtn.onclick = function () {
-    var activeModal = modalCloseBtn.closest(".prizes-modal");
+    let activeModal = modalCloseBtn.closest(".prizes-modal");
     activeModal.classList.remove("is-active");
     // 1. 共通ターゲットを有効化 (main, footer)
     toggleCommonInert(false);
@@ -159,53 +159,61 @@ function cloneAndAppend(element, swiperWrap) {
 }
 
 const swiperWrap = document.querySelector("#js-about-swiper-wrap");
-const swiperSlides = swiperWrap.querySelectorAll(".about-slide");
-
-for (let swiperSlide of swiperSlides) {
-  cloneAndAppend(swiperSlide, swiperWrap);
+if (swiperWrap) {
+  const swiperSlides = swiperWrap.querySelectorAll(".about-slide");
+  for (let swiperSlide of swiperSlides) {
+    cloneAndAppend(swiperSlide, swiperWrap);
+  }
 }
 
-const aboutSwiper = new Swiper(".about__swiper", {
-  loop: true,
-  slidesPerView: "auto", // 一度に表示する枚数
-  spaceBetween: 10, // スライド間に10pxの余白を設定
-  speed: 6000, // ループの時間
-  allowTouchMove: false, // スワイプ無効
-  autoplay: {
-    delay: 0, // 途切れなくループ
-  },
-  breakpoints: {
-    // 画面幅が900px以上の場合は余白を20px
-    768: {
-      spaceBetween: 20, // スライド間に20pxの余白を設定
+
+const aboutSlider = document.querySelector(".about__swiper");
+if (aboutSlider) {
+  const aboutSwiper = new Swiper(aboutSlider, {
+    loop: true,
+    slidesPerView: "auto", // 一度に表示する枚数
+    spaceBetween: 10, // スライド間に10pxの余白を設定
+    speed: 6000, // ループの時間
+    allowTouchMove: false, // スワイプ無効
+    autoplay: {
+      delay: 0, // 途切れなくループ
     },
-  },
-});
+    breakpoints: {
+      // 画面幅が900px以上の場合は余白を20px
+      768: {
+        spaceBetween: 20, // スライド間に20pxの余白を設定
+      },
+    },
+  });
+}
+
 
 //spots__swiper
-
-const spotSwiper = new Swiper(".spots-slider", {
-  // Optional parameters
-  // direction: "vertical",
-  loop: true,
-  slidesPerView: "auto", // 一度に表示する枚数
-  spaceBetween: 16, // スライド間に16pxの余白を設定
-  centeredSlides: true, // アクティブなスライドを中央にする
-
-  // Navigation arrows
-  navigation: {
-    nextEl: ".spots-slider__next",
-    prevEl: ".spots-slider__prev",
-  },
-
-  breakpoints: {
-    768: {
-      spaceBetween: 32, // スライド間に32pxの余白を設定
-      centeredSlides: false, // アクティブなスライドを中央にするを無効化する
-      slidesPerView: "auto", // 一度に表示する枚数
+const spotsSlider = document.querySelector(".spots-slider");
+if(spotsSlider){
+  const spotSwiper = new Swiper(spotsSlider, {
+    // Optional parameters
+    // direction: "vertical",
+    loop: true,
+    slidesPerView: "auto", // 一度に表示する枚数
+    spaceBetween: 16, // スライド間に16pxの余白を設定
+    centeredSlides: true, // アクティブなスライドを中央にする
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: ".spots-slider__next",
+      prevEl: ".spots-slider__prev",
     },
-  },
-});
+  
+    breakpoints: {
+      768: {
+        spaceBetween: 32, // スライド間に32pxの余白を設定
+        centeredSlides: false, // アクティブなスライドを中央にするを無効化する
+        slidesPerView: "auto", // 一度に表示する枚数
+      },
+    },
+  });
+}
 
 // アコーディオンメニュー
 
