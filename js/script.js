@@ -86,13 +86,15 @@ const modalInertBoxes = document.querySelectorAll(".js-modal-inert");
 modalActiveBtns.forEach(function (modalActiveBtn) {
   modalActiveBtn.onclick = function () {
     let activeBtn = modalActiveBtn.getAttribute("data-modal");
-    document.getElementById(activeBtn).classList.add("is-active");
-    // 1. 共通ターゲットを無効化 (main, footer)
-  toggleCommonInert(true);
-  
-  // 2. モーダル専用ターゲットを無効化 (header)
-  if (modalHeaderTarget) {
-    modalHeaderTarget.inert = true;
+    const modalElement = document.getElementById(activeBtn);
+    if (modalElement){
+      modalElement.classList.add("is-active");
+        // 1. 共通ターゲットを無効化 (main, footer)
+      toggleCommonInert(true);
+      // 2. モーダル専用ターゲットを無効化 (header)
+      if (modalHeaderTarget) {
+        modalHeaderTarget.inert = true;
+      }
   }
   };
 });
@@ -102,13 +104,15 @@ const modalCloseBtns = document.querySelectorAll(".js-modal-close");
 modalCloseBtns.forEach(function (modalCloseBtn) {
   modalCloseBtn.onclick = function () {
     let activeModal = modalCloseBtn.closest(".prizes-modal");
-    activeModal.classList.remove("is-active");
-    // 1. 共通ターゲットを有効化 (main, footer)
-    toggleCommonInert(false);
-    
-    // 2. モーダル専用ターゲットを有効化 (header)
-    if (modalHeaderTarget) {
-      modalHeaderTarget.inert = false;
+    if (activeModal){
+      activeModal.classList.remove("is-active");
+      // 1. 共通ターゲットを有効化 (main, footer)
+      toggleCommonInert(false);
+      
+      // 2. モーダル専用ターゲットを有効化 (header)
+      if (modalHeaderTarget) {
+        modalHeaderTarget.inert = false;
+      }
     }
   };
 });
@@ -232,6 +236,9 @@ const setUpAccordion = () => {
   details.forEach((element) => {
     const summary = element.querySelector(".js-summary");
     const content = element.querySelector(".js-content");
+    if(!summary || !content){
+      return; // 要素が見つからない場合はスキップ
+    }
 
     summary.addEventListener("click", (event) => {
       // デフォルトの挙動を無効化
